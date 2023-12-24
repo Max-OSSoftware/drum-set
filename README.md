@@ -1,14 +1,11 @@
-# Project Title
+# React Drum Machine
 
-DrumMachine Built with React and Bootstrap react.
+DrumMachine Built with React and Bootstrap react. this is for the freecodecamp challenge forFront 
+End Libraries.
 
-## Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), a modern build setup for React applications.
 
-## Available Scripts
 
-In the project directory, you can run several commands:
 
 ### `npm start`
 
@@ -22,10 +19,3 @@ This command launches the test runner in the interactive watch mode. It's a good
 
 This command builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. This way, your app is ready to be deployed!
 
-## Contributing
-
-If you want to contribute to this project and make it better, your help is very welcome. Create a pull request with your suggested changes, and we will review it as soon as possible.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
