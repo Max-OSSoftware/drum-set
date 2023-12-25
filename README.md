@@ -4,9 +4,6 @@ DrumMachine Built with React and Bootstrap react. this is for the freecodecamp c
 End Libraries.
 
 
-
-
-
 ### `npm start`
 
 This command runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will automatically reload if you make changes to the code. You will also see any lint errors in the console.
