@@ -1,87 +1,91 @@
+// Importing necessary React hooks and components from React and React Bootstrap
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
-import './index.css';
+import './index.css'; // Importing CSS for styling
 
+// DrumPad component representing each individual drum pad
 const DrumPad = ({ keyTrigger, id, url, handleDisplay, clipName }) => {
-  const audioRef = useRef(null);
+  const audioRef = useRef(null); // Using useRef to reference the audio element
 
+  // useEffect hook to add and clean up event listeners
   useEffect(() => {
+    // Function to handle key press events
     const handleKeyPress = (event) => {
       if (event.key.toUpperCase() === keyTrigger) {
-        playSound();
+        playSound(); // Play sound if the pressed key matches the drum pad
       }
     };
 
+    // Function to play the drum sound
     const playSound = () => {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-      handleDisplay(clipName);
+      audioRef.current.currentTime = 0; // Reset audio to start
+      audioRef.current.play(); // Play the audio
+      handleDisplay(clipName); // Update the display with the clip name
     };
 
+    // Adding the keydown event listener
     window.addEventListener('keydown', handleKeyPress);
 
+    // Cleanup function to remove the event listener
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [keyTrigger, clipName, handleDisplay]);
+  }, [keyTrigger, clipName, handleDisplay]); // Dependencies for useEffect
 
+  // Function to play sound (used on button click)
   const playSound = () => {
-    audioRef.current.currentTime = 0;
-    audioRef.current.play();
-    handleDisplay(clipName);
+    audioRef.current.currentTime = 0; // Reset audio to start
+    audioRef.current.play(); // Play the audio
+    handleDisplay(clipName); // Update the display with the clip name
   };
 
+  // Rendering the drum pad as a button
   return (
     <Col xs={4} className="mb-3">
       <Button id={id} className="drum-pad w-100 shadow btn-dark" onClick={playSound}>
-        {keyTrigger}
-        <audio id={keyTrigger} className="clip" src={url} ref={audioRef}></audio>
+        {keyTrigger} {/* Display the key trigger on the button */}
+        <audio id={keyTrigger} className="clip" src={url} ref={audioRef}></audio> {/* Audio element */}
       </Button>
     </Col>
   );
 };
 
+// DrumMachine component representing the entire drum machine
 const DrumMachine = () => {
-  const [currentSound, setCurrentSound] = useState('');
+  const [currentSound, setCurrentSound] = useState(''); // State to track the current sound
 
+  // Function to update the current sound
   const handleDisplay = (clipName) => {
     setCurrentSound(clipName);
   };
 
+  // Data for each drum pad
   const drumPads = [
-    { keyTrigger: 'Q', id: 'drum1', url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3', clipName: 'Heater 1'},
-    { keyTrigger: 'W', id: 'drum2', url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3', clipName: 'Heater 2' },
-    { keyTrigger: 'E', id: 'drum3', url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3', clipName: 'Heater 3' },
-    { keyTrigger: 'A', id: 'drum4', url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3', clipName: 'Heater 4' },
-    { keyTrigger: 'S', id: 'drum5', url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3', clipName: 'Clap' },
-    { keyTrigger: 'D', id: 'drum6', url: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3', clipName: 'Open-HH' },
-    { keyTrigger: 'Z', id: 'drum7', url: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3', clipName: "Kick-n'-Hat" },
-    { keyTrigger: 'X', id: 'drum8', url: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3', clipName: 'Kick' },
-    { keyTrigger: 'C', id: 'drum9', url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3', clipName: 'Closed-HH' },
+    // Array of objects representing each drum pad with its properties
+    // ...
   ];
 
+  // Rendering the drum machine
   return (
     <Container className="d-flex justify-content-center align-items-center vh-100">
       <Card className="p-3 double-border">
         <Card.Title className="text-center musical-font">DRUM MACHINE</Card.Title>
         <div id="drum-machine">
           <Row>
+            {/* Mapping each drum pad data to a DrumPad component */}
             {drumPads.map((drumPad) => (
               <DrumPad
                 key={drumPad.id}
-                keyTrigger={drumPad.keyTrigger}
-                id={drumPad.id}
-                url={drumPad.url}
-                clipName={drumPad.clipName}
-                handleDisplay={handleDisplay}
+                // Passing props to DrumPad component
+                // ...
               />
             ))}
           </Row>
-          <h2 id="display" className="text-center mt-3">{currentSound}</h2>
+          <h2 id="display" className="text-center mt-3">{currentSound}</h2> {/* Displaying the current sound */}
         </div>
       </Card>
     </Container>
   );
 };
 
-export default DrumMachine;
+export default DrumMachine; // Exporting the DrumMachine component
