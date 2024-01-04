@@ -42,7 +42,7 @@ const DrumPad = ({ keyTrigger, id, url, handleDisplay, clipName }) => {
   // Rendering the drum pad as a button
   return (
     <Col xs={4} className="mb-3">
-      <Button id={id} className="drum-pad w-100 shadow btn-dark" onClick={playSound}>
+      <Button id={id} className="drum-pad w-100 shadow btn-light" onClick={playSound}>
         {keyTrigger} {/* Display the key trigger on the button */}
         <audio id={keyTrigger} className="clip" src={url} ref={audioRef}></audio> {/* Audio element */}
       </Button>
