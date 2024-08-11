@@ -1,7 +1,6 @@
 # React Drum Machine
 
-DrumMachine Built with React and Bootstrap react. this is for the freecodecamp challenge for Front 
-End Libraries.
+DrumMachine Built with React and Bootstrap react. 
 
 
 ### `npm start`
